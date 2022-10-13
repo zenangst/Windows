@@ -20,10 +20,6 @@ final class WindowsTests: XCTestCase {
     }
 
     for (runningApplication, windows) in dictionary {
-      if runningApplication.bundleIdentifier?.contains("Pages") == true {
-        runningApplication.activate(options: .activateIgnoringOtherApps)
-      }
-
       Swift.print(runningApplication.bundleIdentifier)
       Swift.print(windows)
       Swift.print("–––––––––––")
