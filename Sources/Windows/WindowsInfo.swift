@@ -10,11 +10,8 @@ enum WindowsError: Error {
   case unableToCreateImage
 }
 
-final public class WindowsController {
-
-  public init() {}
-
-  public func getWindows(_ options: CGWindowListOption) throws -> [WindowModel] {
+final public class WindowsInfo {
+  public static func getWindows(_ options: CGWindowListOption) throws -> [WindowModel] {
     guard let entries = CGWindowListCopyWindowInfo(options, kCGNullWindowID) as? [[String: Any]] else {
       throw WindowsError.unableToCopyWindowInfo
     }
@@ -22,7 +19,7 @@ final public class WindowsController {
     return entries.compactMap(WindowModel.init)
   }
 
-  public func images(for windowModels: [WindowModel], options: CGWindowListOption) throws -> [WindowModel: CGImage] {
+  public static func images(for windowModels: [WindowModel], options: CGWindowListOption) throws -> [WindowModel: CGImage] {
     var results = [WindowModel: CGImage]()
     for model in windowModels {
       guard let cgImage = try? image(for: model, options: options) else { continue }
@@ -31,7 +28,7 @@ final public class WindowsController {
     return results
   }
 
-  public func image(for windowModel: WindowModel, options: CGWindowListOption) throws -> CGImage {
+  public static func image(for windowModel: WindowModel, options: CGWindowListOption) throws -> CGImage {
     guard CGPreflightScreenCaptureAccess() else {
       throw WindowsError.noScreenCaptureAccess
     }

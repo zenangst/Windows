@@ -4,8 +4,7 @@ import Windows
 
 final class WindowsTests: XCTestCase {
   func testActiveWindows() throws {
-    let controller = WindowsController()
-    let windows = try controller.getWindows([])
+    let windows = try WindowsInfo.getWindows([])
 
     var dictionary = [NSRunningApplication: [WindowModel]]()
 
