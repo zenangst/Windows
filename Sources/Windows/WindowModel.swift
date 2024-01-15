@@ -5,6 +5,7 @@ public struct WindowModel: Hashable {
   public var id: Int { Int(windowNumber.rawValue) }
   public let alpha: Float
   public let isOnScreen: Bool
+  public let layer: Int
   public let name: String
   public let ownerName: String
   public let ownerPid: Pid
@@ -35,6 +36,7 @@ public struct WindowModel: Hashable {
     self.ownerName = dictionary[kCGWindowOwnerName, ""]
     self.ownerPid = Pid(rawValue: pid)
     self.windowName = dictionary[kCGWindowName, ""]
+    self.layer = dictionary[kCGWindowLayer, -1]
     self.rect = Rect(rect).toCGRect
   }
 
