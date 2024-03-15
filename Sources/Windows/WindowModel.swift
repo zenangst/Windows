@@ -1,7 +1,7 @@
 import CoreGraphics
 import Foundation
 
-public struct WindowModel: Hashable {
+public struct WindowModel: Hashable, Sendable {
   public var id: Int { Int(windowNumber.rawValue) }
   public let alpha: Float
   public let isOnScreen: Bool
@@ -40,11 +40,11 @@ public struct WindowModel: Hashable {
     self.rect = Rect(rect).toCGRect
   }
 
-  public struct WindowNumber: Hashable {
+  public struct WindowNumber: Hashable, Sendable {
     public let rawValue: Double
   }
 
-  public struct Pid: Hashable {
+  public struct Pid: Hashable, Sendable {
     public let rawValue: Int
   }
 }
