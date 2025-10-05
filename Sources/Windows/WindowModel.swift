@@ -1,7 +1,7 @@
 import CoreGraphics
 import Foundation
 
-public struct WindowModel: Hashable, Sendable {
+public struct WindowModel: Identifiable, Hashable, Sendable {
   public var id: Int { Int(windowNumber.rawValue) }
   public let alpha: Float
   public let isOnScreen: Bool
